@@ -19,7 +19,7 @@ const Logo = styled.h3`
   font-size: 28px;
   font-weight: 800;
   a {
-    color: rgba(232, 141, 1, 0);
+    color: rgba(232, 141, 1, 1);
   }
 `;
 const Menu = styled.ul`
@@ -47,7 +47,7 @@ const Header = () => {
         </li>
 
         <li>
-          <Link to={"/search"}>Search</Link>
+          <Link to={"/search"}>SEARCH</Link>
         </li>
       </Menu>
     </HeaderWrap>
