@@ -3,7 +3,8 @@ import reset from "styled-reset";
 
 export const mainStyle = {
   Padding_pc: "10%",
-  padding_mo: "20px",
+  Padding_1024: "8%",
+  Padding_440: "20px",
 };
 
 export const GlobalStyled = createGlobalStyle`

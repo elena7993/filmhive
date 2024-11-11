@@ -34,3 +34,12 @@ export const searchMovie = (keyword) => {
     baseUrl + `search/movie?query=${keyword}&include_adult=true&language=ko-kr`;
   return fetch(searchUrl, options).then((res) => res.json());
 };
+
+export const movieCredits = (id) =>
+  fetch(url(`movie/${id}/credits`), options).then((res) => res.json());
+
+export const personImages = (personId) =>
+  fetch(
+    url(`https://api.themoviedb.org/3/person/${personId}/images`),
+    options
+  ).then((res) => res.json());

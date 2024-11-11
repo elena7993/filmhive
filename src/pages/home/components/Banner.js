@@ -1,21 +1,42 @@
 import styled from "styled-components";
 import { ORIGINAL_URL } from "../../../constant/imgUrl";
+import { mainStyle } from "../../../GlobalStyled";
 
 const MainBanner = styled.section`
   height: 80vh;
   background: url(${ORIGINAL_URL}${(props) => props.$coverImg}) no-repeat center /
     cover;
-  padding: 0 20px;
+  padding: 0 ${mainStyle.Padding_pc};
   position: relative;
+
+  @media screen and (max-width: 1024px) {
+    padding: 0 ${mainStyle.Padding_1024};
+  }
+
+  @media screen and (max-width: 440px) {
+    padding: 0 ${mainStyle.Padding_440};
+  }
 `;
 
 const TitleWrap = styled.div`
-  width: 60%;
+  width: 85%;
   position: absolute;
-  bottom: 150px;
+  bottom: 110px;
   left: 0;
-  padding: 0 150px;
+  padding: 0 ${mainStyle.Padding_pc};
   color: #fff;
+  @media screen and (max-width: 1024px) {
+    padding: 0 ${mainStyle.Padding_1024};
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 85%;
+    bottom: 35px;
+    h3 {
+      font-size: 24px;
+    }
+    padding: 0 ${mainStyle.Padding_440};
+  }
   h3 {
     font-size: 34px;
     font-weight: 700;

@@ -3,10 +3,18 @@ import { W500_URL } from "../../../constant/imgUrl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
 import "swiper/css";
+import { mainStyle } from "../../../GlobalStyled";
 
 const Container = styled.section`
-  padding: 10px 150px;
+  padding: 10px ${mainStyle.Padding_pc};
   color: #fff;
+  @media screen and (max-width: 1024px) {
+    padding: 10px ${mainStyle.Padding_1024};
+  }
+
+  @media screen and (max-width: 440px) {
+    padding: 10px ${mainStyle.Padding_440};
+  }
 `;
 const Title = styled.div`
   margin: 50px 0 20px 0;

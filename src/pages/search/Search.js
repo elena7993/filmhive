@@ -5,20 +5,25 @@ import { useState } from "react";
 import { NOIMG_URL, W500_URL } from "../../constant/imgUrl";
 import { searchMovie } from "../../api";
 import PageTitle from "../../components/PageTitle";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.div`
   color: #fff;
+  padding: 100px 150px;
 `;
 
 const Form = styled.form`
+  position: relative;
   input {
     all: unset;
-    width: 70%;
+    width: 100%;
     height: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(232, 141, 1, 0.8);
+    border-radius: 8px;
     box-sizing: border-box;
     padding: 0 20px;
-    margin-top: 100px;
+    /* margin-top: 100px; */
     &::placeholder {
       font-size: 18px;
     }
@@ -27,7 +32,8 @@ const Form = styled.form`
 `;
 
 const ConWrap = styled.div`
-  margin-top: 100px;
+  margin-top: 50px;
+  padding: 0 150px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   row-gap: 50px;
@@ -84,10 +90,21 @@ const Search = () => {
             type="text"
             placeholder="영화 제목"
           />
+          <FontAwesomeIcon
+            style={{
+              position: "absolute",
+              top: "16px",
+              right: "20px",
+              fontSize: "18px",
+            }}
+            icon={faMagnifyingGlass}
+          ></FontAwesomeIcon>
         </Form>
       </Wrapper>
       {!term || term.length === 0 ? (
-        <p>검색 결과가 없습니다.</p>
+        <p style={{ fontSize: "20px", textAlign: "center" }}>
+          검색 결과가 없습니다.
+        </p>
       ) : (
         <ConWrap>
           {term.map((data) => (

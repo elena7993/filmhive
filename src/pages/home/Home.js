@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import Loading from "../../components/Loading";
 import Movies from "./components/Movies";
 import Banner from "./components/Banner";
 import PageTitle from "../../components/PageTitle";
 import { nowPlaying, popular, topRated, upComing } from "../../api";
-
-// const Genre = styled.div`
-//   display: flex;
-// `;
 
 const Home = () => {
   const [nowData, setNowData] = useState();
@@ -48,20 +43,12 @@ const Home = () => {
             </div>
           )}
 
-          {nowData && <Movies title="현재 상영 영화" data={nowData} />}
-          {popData && <Movies title="인기 영화" data={popData} />}
-          {topData && <Movies title="평점 높은 영화" data={topData} />}
-          {upData && <Movies title="개봉 예정 영화" data={upData} />}
+          {nowData && <Movies title="Now Playing" data={nowData} />}
+          {popData && <Movies title="Popular" data={popData} />}
+          {topData && <Movies title="Top Rated" data={topData} />}
+          {upData && <Movies title="Upcoming" data={upData} />}
         </>
       )}
-
-      {/* <Genre>
-        <button>Action</button>
-        <button>Drama</button>
-        <button>Thriller</button>
-        <button>Horror</button>
-        <button>Documentary</button>
-      </Genre> */}
     </div>
   );
 };
