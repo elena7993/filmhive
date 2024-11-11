@@ -44,17 +44,33 @@ const Container = styled.div`
   display: flex;
   justify-content: space-evenly;
   position: relative;
-  @media screen and (max-width: 1024) {
+  @media screen and (max-width: 1024px) {
     justify-content: space-evenly;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 440px) {
+    flex-direction: column;
+    align-items: center;
   }
 `;
 const Bg = styled.div`
-  width: 42%;
+  /* width: 42%; */
+  width: 500px;
   height: 650px;
   border-radius: 15px;
   @media screen and (max-width: 1024) {
-    width: 36%;
+    width: 400px;
     height: 500px;
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 300px;
+    height: auto;
   }
 `;
 
@@ -82,6 +98,12 @@ const TitileWrap = styled.div`
       font-size: 28px;
     }
   }
+  @media screen and (max-width: 440px) {
+    width: 90%;
+    h3 {
+      font-size: 20px;
+    }
+  }
   h3 {
     font-size: 32px;
     font-weight: 700;
@@ -101,8 +123,15 @@ const InfoWrap = styled.div`
   padding: 70px 25px 25px 30px;
   color: lightgrey;
   @media screen and (max-width: 1024px) {
-    width: 500px;
-    height: 480px;
+    width: 450px;
+    height: auto;
+    padding: 20px;
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 300px;
+    height: auto;
+    padding: 10px;
   }
 
   .release_date {
@@ -229,6 +258,24 @@ const Detail = () => {
                       ></FontAwesomeIcon>
                     </span>
                     {data.runtime}분
+                    <div
+                      style={{ display: "inline-block", float: "right" }}
+                      className="video_icon"
+                    >
+                      <button
+                        style={{
+                          width: "100px",
+                          height: "30px",
+                          backgroundColor: "rgb(232, 141, 1",
+                          color: "#fff",
+                          border: "none",
+                          borderRadius: "20px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Watch Trailer
+                      </button>
+                    </div>
                   </p>
                   <p className="release_date">
                     <span>
