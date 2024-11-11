@@ -10,7 +10,7 @@ const MainBanner = styled.section`
 `;
 
 const TitleWrap = styled.div`
-  width: 100%;
+  width: 60%;
   position: absolute;
   bottom: 150px;
   left: 0;

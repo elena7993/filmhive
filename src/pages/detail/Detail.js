@@ -5,6 +5,12 @@ import { useEffect, useState } from "react";
 import { movieDetail } from "../../api";
 import Loading from "../../components/Loading";
 import PageTitle from "../../components/PageTitle";
+import {
+  faCalendar,
+  faClock,
+  faStar,
+} from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.div`
   padding: 150px;
@@ -33,20 +39,15 @@ const Container = styled.div`
   position: relative;
 `;
 const Bg = styled.div`
-  width: 44%;
+  width: 42%;
   height: 650px;
   border-radius: 15px;
 `;
 
 const InnerWrap = styled.div`
-  width: 500px;
-  height: 500px;
-  background-color: rgba(11, 20, 43, 0.8);
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   margin-top: 50px;
-  padding: 0 20px;
 `;
 
 const TitileWrap = styled.div`
@@ -60,7 +61,7 @@ const TitileWrap = styled.div`
   align-items: center;
   position: absolute;
   top: 10px;
-  right: 45px;
+  right: 110px;
   /* margin-bottom: 10px; */
   h3 {
     font-size: 32px;
@@ -74,10 +75,16 @@ const TitileWrap = styled.div`
 `;
 
 const InfoWrap = styled.div`
-  margin-top: 50px;
+  width: 600px;
+  height: 580px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 70px 25px 25px 30px;
+  /* margin-top: 50px; */
   color: lightgrey;
-  p {
-    margin-bottom: 10px;
+
+  .release_date {
+    margin: 20px 0;
   }
 
   div {
@@ -85,16 +92,28 @@ const InfoWrap = styled.div`
     flex-wrap: wrap;
     gap: 10px;
     p {
-      background-color: #2a2a2a;
+      background-color: rgba(4, 0, 41, 0.7);
+      border: 2px solid rgb(232, 141, 1, 0.8);
       padding: 5px 10px;
-      border-radius: 5px;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
   }
 
   p.overview {
-    margin-top: 20px;
+    margin-top: 10px;
     line-height: 1.6;
     color: #e0e0e0;
+  }
+
+  .director {
+    margin-top: 15px;
+    margin-bottom: 8px;
+  }
+
+  .cast {
+    margin-top: 15px;
+    margin-bottom: 8px;
   }
 `;
 
@@ -143,18 +162,52 @@ const Detail = () => {
               <InnerWrap>
                 <TitileWrap>
                   <h3>{data.title}</h3>
-                  <span>{Math.round(data.vote_average)}점</span>{" "}
+                  <span style={{ color: "rgb(232, 141, 1)" }}>
+                    <span>
+                      <FontAwesomeIcon
+                        style={{ fontSize: "17px", marginRight: "6px" }}
+                        icon={faStar}
+                      ></FontAwesomeIcon>
+                    </span>
+                    {Math.round(data.vote_average)}점
+                  </span>{" "}
                 </TitileWrap>
 
                 <InfoWrap>
-                  <p>{data.runtime}분</p>
-                  <p>{data.release_date}</p>
+                  <p>
+                    <span>
+                      <FontAwesomeIcon
+                        style={{
+                          color: "rgb(232, 141, 1)",
+                          marginRight: "6px",
+                        }}
+                        icon={faClock}
+                      ></FontAwesomeIcon>
+                    </span>
+                    {data.runtime}분
+                  </p>
+                  <p className="release_date">
+                    <span>
+                      <FontAwesomeIcon
+                        style={{
+                          color: "rgb(232, 141, 1)",
+                          marginRight: "8px",
+                        }}
+                        icon={faCalendar}
+                      ></FontAwesomeIcon>
+                    </span>
+                    {data.release_date}
+                  </p>
                   <div>
                     {data.genres.map((genre) => (
                       <p key={genre.id}>{genre.name}</p>
                     ))}
                   </div>
                   <p className="overview">{data.overview}</p>
+                  <h4 className="director">Director</h4>
+                  <p>이현아</p>
+                  <h4 className="cast">Cast</h4>
+                  <p>스칼렛 요한슨</p>
                 </InfoWrap>
               </InnerWrap>
             </Container>

@@ -6,9 +6,9 @@ import Banner from "./components/Banner";
 import PageTitle from "../../components/PageTitle";
 import { nowPlaying, popular, topRated, upComing } from "../../api";
 
-const Genre = styled.div`
-  display: flex;
-`;
+// const Genre = styled.div`
+//   display: flex;
+// `;
 
 const Home = () => {
   const [nowData, setNowData] = useState();
@@ -55,13 +55,13 @@ const Home = () => {
         </>
       )}
 
-      <Genre>
+      {/* <Genre>
         <button>Action</button>
         <button>Drama</button>
         <button>Thriller</button>
         <button>Horror</button>
         <button>Documentary</button>
-      </Genre>
+      </Genre> */}
     </div>
   );
 };
