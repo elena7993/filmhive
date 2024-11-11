@@ -40,6 +40,6 @@ export const movieCredits = (id) =>
 
 export const personImages = (personId) =>
   fetch(
-    url(`https://api.themoviedb.org/3/person/${personId}/images`),
+    url(`${baseUrl}person/${personId}/images?language=ko-kr`),
     options
   ).then((res) => res.json());

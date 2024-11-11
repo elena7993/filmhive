@@ -129,11 +129,15 @@ const InfoWrap = styled.div`
   }
 
   .director {
-    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
     margin-bottom: 8px;
   }
 
   .cast {
+    font-size: 18px;
+    font-weight: 600;
     margin-top: 15px;
     margin-bottom: 8px;
   }
@@ -152,10 +156,23 @@ const Detail = () => {
       try {
         const detailData = await movieDetail(id);
         const creditData = await movieCredits(id);
-        const personData = await personImages(id);
+        const castWithImages = await Promise.all(
+          creditData.cast.slice(0, 5).map(async (actor) => {
+            const personImageData = await personImages(actor.id);
+            console.log(personImageData);
+            return {
+              ...actor,
+              profileImage:
+                personImageData?.profiles && personImageData.profiles.length > 0
+                  ? personImageData.profiles[0].file_path
+                  : null,
+            };
+          })
+        );
+
         setData(detailData);
         setIsLoading(false);
-        setCreditData(creditData);
+        setCreditData({ ...creditData, cas: castWithImages });
       } catch (error) {
         console.log(error);
       }
@@ -192,7 +209,7 @@ const Detail = () => {
                   <span style={{ color: "rgb(232, 141, 1)" }}>
                     <span>
                       <FontAwesomeIcon
-                        style={{ fontSize: "17px", marginRight: "6px" }}
+                        style={{ fontSize: "17px", marginRight: "4px" }}
                         icon={faStar}
                       ></FontAwesomeIcon>
                     </span>
@@ -238,19 +255,32 @@ const Detail = () => {
                       <p key={director.id}>{director.name}</p>
                     ))}
                   <h4 className="cast">Cast</h4>
-                  {creditData?.cast.map((actor) => (
-                    <div key={actor.id}>
-                      <p>{actor.name}</p>
-                      {actor.profileImage ? (
-                        <img
-                          src={`https://image.tmdb.org/t/p/w200${actor.profileImage}`}
-                          alt={actor.name}
-                        />
-                      ) : (
-                        <p>No Image Available</p>
-                      )}
-                    </div>
-                  ))}
+                  <div style={{ display: "flex", gap: "8px" }}>
+                    {creditData?.cast.slice(0, 4).map((actor) => (
+                      <p
+                        key={actor.id}
+                        style={{
+                          border: "none",
+                          backgroundColor: "rgba(0,0,0,0)",
+                          margin: 0,
+                          padding: 0,
+                        }}
+                      >
+                        {actor.name}
+                        <span
+                          style={{
+                            paddingLeft: "5px",
+                            paddingTop: "5px",
+                            fontSize: "15px",
+                            color: "rgba(255,255,255,0.6)",
+                            // verticalAlign: "meddle",
+                          }}
+                        >
+                          |
+                        </span>
+                      </p>
+                    ))}
+                  </div>
                 </InfoWrap>
               </InnerWrap>
             </Container>
