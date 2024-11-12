@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/filmhive/static/css/main.3c70d7db.css",
+    "main.js": "/filmhive/static/js/main.698d6764.js",
+    "index.html": "/filmhive/index.html",
+    "main.3c70d7db.css.map": "/filmhive/static/css/main.3c70d7db.css.map",
+    "main.698d6764.js.map": "/filmhive/static/js/main.698d6764.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c70d7db.css",
+    "static/js/main.698d6764.js"
+  ]
+}
