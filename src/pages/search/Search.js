@@ -25,16 +25,23 @@ const Form = styled.form`
     border-radius: 8px;
     box-sizing: border-box;
     padding: 0 20px;
-    /* margin-top: 100px; */
     &::placeholder {
       font-size: 18px;
     }
-    /* z-index: 20; */
+    @media screen and (max-width: 1024px) {
+      padding: 0 ${mainStyle.Padding_1024};
+    }
+    @media screen and (max-width: 768px) {
+      padding: 0 ${mainStyle.Padding_768};
+    }
+    @media screen and (max-width: 440px) {
+      padding: 0 ${mainStyle.Padding_440};
+    }
   }
 `;
 
 const ConWrap = styled.div`
-  margin-top: 50px;
+  /* margin-top: 10px; */
   padding: 0 ${mainStyle.Padding_pc};
   height: 400px;
   display: grid;

@@ -22,6 +22,10 @@ const Wrapper = styled.div`
     padding: 100px ${mainStyle.Padding_1024};
   }
 
+  @media screen and (max-width: 768) {
+    padding: 0 ${mainStyle.Padding_768};
+  }
+
   @media screen and (max-width: 440) {
     padding: 0;
   }
@@ -66,13 +70,12 @@ const Bg = styled.div`
   border-radius: 15px;
   @media screen and (max-width: 1024px) {
     width: 400px;
-    height: 550px;
+    height: 600px;
   }
 
   @media screen and (max-width: 440px) {
     width: 100%;
-
-    height: 450px;
+    height: 550px;
   }
 `;
 
@@ -80,6 +83,12 @@ const InnerWrap = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 50px;
+  @media screen and (max-width: 768px) {
+    margin-top: 30px;
+  }
+  @media screen and (max-width: 440px) {
+    margin-top: 20px;
+  }
 `;
 
 const TitileWrap = styled.div`
@@ -102,15 +111,15 @@ const TitileWrap = styled.div`
   }
   @media screen and (max-width: 768px) {
     position: absolute;
-    top: 450px;
-    right: 60px;
-    width: 80%;
+    top: 350px;
+    right: 70px;
+    width: 76%;
   }
 
   @media screen and (max-width: 440px) {
     position: absolute;
-    top: 500px;
-    right: 0;
+    top: 335px;
+    right: 60px;
     width: 100%;
     background-color: transparent;
 
@@ -126,6 +135,9 @@ const TitileWrap = styled.div`
   span {
     font-size: 18px;
     font-weight: 500;
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+    }
   }
 `;
 
