@@ -340,23 +340,6 @@ const Detail = () => {
                       </button>
                     </div>
                   </p>
-                  {showModal && trailer && (
-                    <Modal onClose={closeModal}>
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src={`https://www.youtube.com/embed/${trailer.key}`}
-                        title="YouTube video player"
-                        // frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        style={{
-                          borderRadius: "10px",
-                          backgroundColor: "#000",
-                        }}
-                      ></iframe>
-                    </Modal>
-                  )}
                   <p className="release_date">
                     <span>
                       <FontAwesomeIcon
@@ -415,6 +398,23 @@ const Detail = () => {
             </Container>
           </Wrapper>
         </>
+      )}
+      {showModal && trailer && (
+        <Modal onClose={closeModal}>
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${trailer.key}`}
+            title="YouTube video player"
+            // frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{
+              borderRadius: "10px",
+              backgroundColor: "#000",
+            }}
+          ></iframe>
+        </Modal>
       )}
     </>
   );

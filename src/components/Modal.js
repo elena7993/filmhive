@@ -6,19 +6,19 @@ const ModalWrapper = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  /* opacity: 0.8; */
+  z-index: 10000;
 `;
 
 const ModalContent = styled.div`
   width: 90%;
   max-width: 800px;
   aspect-ratio: 16/9;
-  /* background-color: #000; */
+  background-color: #000;
+  display: flex;
   padding: 20px;
   border-radius: 10px;
   position: relative;
@@ -45,6 +45,7 @@ const CloseButton = styled.button`
   color: #fff;
   font-size: 30px;
   cursor: pointer;
+  z-index: 10001;
 `;
 
 const Modal = ({ children, onClose }) => {
