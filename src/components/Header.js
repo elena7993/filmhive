@@ -20,6 +20,7 @@ const HeaderWrap = styled.header`
   }
   @media screen and (max-width: 768px) {
     padding: 20px ${mainStyle.Padding_768};
+    justify-content: center;
   }
   @media screen and (max-width: 440px) {
     padding: 20px ${mainStyle.Padding_440};
@@ -42,11 +43,25 @@ const Menu = styled.ul`
       color: #fff;
     }
   }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+  @media screen and (max-width: 440px) {
+    display: none;
+  }
 `;
 
-const Bar = styled.div`
-  font-size: 18px;
-`;
+// const Bar = styled.div`
+//   font-size: 18px;
+//   display: none;
+//   @media screen and (max-width: 768px) {
+//     display: block;
+//   }
+
+//   @media screen and (max-width: 440px) {
+//     display: block;
+//   }
+// `;
 
 const Header = () => {
   const headerRef = useRef();
@@ -88,9 +103,9 @@ const Header = () => {
         </li>
       </Menu>
 
-      <Bar>
+      {/* <Bar>
         <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
-      </Bar>
+      </Bar> */}
     </HeaderWrap>
   );
 };

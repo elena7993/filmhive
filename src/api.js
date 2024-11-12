@@ -43,3 +43,6 @@ export const personImages = (personId) =>
     url(`${baseUrl}person/${personId}/images?language=ko-kr`),
     options
   ).then((res) => res.json());
+
+export const movieTrailer = (id) =>
+  fetch(url(`movie/${id}/videos`), options).then((res) => res.json());

@@ -2,7 +2,12 @@ import styled from "styled-components";
 import { NOIMG_URL, ORIGINAL_URL, W500_URL } from "../../constant/imgUrl";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { movieCredits, movieDetail, personImages } from "../../api";
+import {
+  movieCredits,
+  movieDetail,
+  movieTrailer,
+  personImages,
+} from "../../api";
 import Loading from "../../components/Loading";
 import PageTitle from "../../components/PageTitle";
 import {
@@ -12,22 +17,23 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { mainStyle } from "../../GlobalStyled";
+import Modal from "../../components/Modal";
 
 const Wrapper = styled.div`
   padding: ${mainStyle.Padding_pc};
   min-height: 100vh;
   position: relative;
   z-index: 1;
-  @media screen and (max-width: 1024) {
+  @media screen and (max-width: 1024px) {
     padding: 100px ${mainStyle.Padding_1024};
   }
 
-  @media screen and (max-width: 768) {
+  @media screen and (max-width: 768px) {
     padding: 0 ${mainStyle.Padding_768};
   }
 
-  @media screen and (max-width: 440) {
-    padding: 0;
+  @media screen and (max-width: 440px) {
+    padding: 0 ${mainStyle.Padding_440};
   }
 `;
 
@@ -44,10 +50,10 @@ const Bgimage = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: auto;
   display: flex;
   justify-content: space-evenly;
-  position: relative;
+  /* position: relative; */
   @media screen and (max-width: 1024px) {
     justify-content: space-evenly;
   }
@@ -55,6 +61,7 @@ const Container = styled.div`
   @media screen and (max-width: 768px) {
     flex-direction: column;
     align-items: center;
+    margin-top: 70px;
   }
 
   @media screen and (max-width: 440px) {
@@ -66,16 +73,17 @@ const Bg = styled.div`
   /* width: 42%; */
   width: 100%;
   max-width: 500px;
+  height: 100%;
   height: 650px;
   border-radius: 15px;
   @media screen and (max-width: 1024px) {
-    width: 400px;
-    height: 600px;
+    /* width: 400px; */
+    max-height: 500px;
   }
 
   @media screen and (max-width: 440px) {
-    width: 100%;
-    height: 550px;
+    /* width: 100%; */
+    max-height: 400px;
   }
 `;
 
@@ -83,16 +91,17 @@ const InnerWrap = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 50px;
+  position: relative;
   @media screen and (max-width: 768px) {
-    margin-top: 30px;
+    margin-top: 40px;
   }
   @media screen and (max-width: 440px) {
-    margin-top: 20px;
+    margin-top: 30px;
   }
 `;
 
 const TitileWrap = styled.div`
-  width: 38%;
+  width: 70%;
   height: 70px;
   color: #fff;
   background-color: rgba(11, 20, 43, 0.8);
@@ -101,27 +110,29 @@ const TitileWrap = styled.div`
   justify-content: space-evenly;
   line-height: 70px;
   position: absolute;
-  top: 10px;
+  top: -35px;
   right: 165px;
   @media screen and (max-width: 1024px) {
-    width: 35%;
+    width: 100%;
     h3 {
       font-size: 28px;
     }
   }
   @media screen and (max-width: 768px) {
-    position: absolute;
-    top: 350px;
-    right: 70px;
-    width: 76%;
+    /* position: absolute; */
+    /* top: 90vh;
+    right: 70px; */
+    width: 100%;
+    right: 0;
   }
 
   @media screen and (max-width: 440px) {
-    position: absolute;
-    top: 335px;
-    right: 60px;
-    width: 100%;
+    /* position: absolute; */
+    /* top: 335px;
+    right: 60px; */
+    width: 90%;
     background-color: transparent;
+    right: 110px;
 
     h3 {
       font-size: 20px;
@@ -131,6 +142,9 @@ const TitileWrap = styled.div`
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 20px;
+    /* @media screen and (max-width: 768px) {
+      margin-bottom: 10px;
+    } */
   }
   span {
     font-size: 18px;
@@ -195,14 +209,12 @@ const InfoWrap = styled.div`
 
   .director {
     font-size: 18px;
-    /* font-weight: 600; */
     margin-top: 25px;
     margin-bottom: 10px;
   }
 
   .cast {
     font-size: 18px;
-    /* font-weight: 500; */
     margin-top: 25px;
     margin-bottom: 10px;
   }
@@ -213,6 +225,8 @@ const Detail = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [creditData, setCreditData] = useState();
+  const [trailer, setTrailer] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   // useScrollTop();
 
@@ -221,6 +235,10 @@ const Detail = () => {
       try {
         const detailData = await movieDetail(id);
         const creditData = await movieCredits(id);
+        const trailerData = await movieTrailer(id);
+        const youtubeTrailer = trailerData.results.find(
+          (video) => video.site === "YouTube" && video.type === "Trailer"
+        );
         const castWithImages = await Promise.all(
           creditData.cast.slice(0, 5).map(async (actor) => {
             const personImageData = await personImages(actor.id);
@@ -234,7 +252,7 @@ const Detail = () => {
             };
           })
         );
-
+        setTrailer(youtubeTrailer);
         setData(detailData);
         setIsLoading(false);
         setCreditData({ ...creditData, cas: castWithImages });
@@ -243,6 +261,14 @@ const Detail = () => {
       }
     })();
   }, [id]);
+
+  const handleTrailerClick = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <>
@@ -299,10 +325,11 @@ const Detail = () => {
                       className="video_icon"
                     >
                       <button
+                        onClick={handleTrailerClick}
                         style={{
                           width: "100px",
                           height: "30px",
-                          backgroundColor: "rgb(232, 141, 1",
+                          backgroundColor: "rgba(232, 141, 1, 1)",
                           color: "#fff",
                           border: "none",
                           borderRadius: "20px",
@@ -313,6 +340,23 @@ const Detail = () => {
                       </button>
                     </div>
                   </p>
+                  {showModal && trailer && (
+                    <Modal onClose={closeModal}>
+                      <iframe
+                        width="100%"
+                        height="100%"
+                        src={`https://www.youtube.com/embed/${trailer.key}`}
+                        title="YouTube video player"
+                        // frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        style={{
+                          borderRadius: "10px",
+                          backgroundColor: "#000",
+                        }}
+                      ></iframe>
+                    </Modal>
+                  )}
                   <p className="release_date">
                     <span>
                       <FontAwesomeIcon
