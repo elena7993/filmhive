@@ -7,11 +7,13 @@ import { searchMovie } from "../../api";
 import PageTitle from "../../components/PageTitle";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Wrapper from "../../components/Wrapper";
+import { mainStyle } from "../../GlobalStyled";
 
-const Wrapper = styled.div`
-  color: #fff;
-  padding: 100px 150px;
-`;
+// const Wrapper = styled.div`
+//   color: #fff;
+//   padding: 100px 150px;
+// `;
 
 const Form = styled.form`
   position: relative;
@@ -33,11 +35,28 @@ const Form = styled.form`
 
 const ConWrap = styled.div`
   margin-top: 50px;
-  padding: 0 150px;
+  padding: 0 ${mainStyle.Padding_pc};
+  height: 400px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   row-gap: 50px;
   column-gap: 30px;
+  @media screen and (max-width: 1024px) {
+    padding: 0 ${mainStyle.Padding_1024};
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 0 ${mainStyle.Padding_768};
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 30px;
+  }
+  @media screen and (max-width: 440px) {
+    padding: 0 ${mainStyle.Padding_440};
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+    row-gap: 20px;
+  }
 `;
 const Con = styled.div`
   a {
@@ -47,12 +66,30 @@ const Con = styled.div`
   h3 {
     margin-top: 10px;
     font-size: 18px;
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+    }
+
+    @media screen and (max-width: 440px) {
+      font-size: 12px;
+    }
   }
-  height: 415px;
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    @media screen and (max-width: 1024px) {
+      height: 350px;
+    }
+
+    @media screen and (max-width: 768px) {
+      height: 320px;
+    }
+
+    @media screen and (max-width: 440px) {
+      height: 280px;
+    }
   }
 `;
 

@@ -16,6 +16,9 @@ const HeaderWrap = styled.header`
   @media screen and (max-width: 1024px) {
     padding: 20px ${mainStyle.Padding_1024};
   }
+  @media screen and (max-width: 768px) {
+    padding: 20px ${mainStyle.Padding_768};
+  }
   @media screen and (max-width: 440px) {
     padding: 20px ${mainStyle.Padding_440};
   }

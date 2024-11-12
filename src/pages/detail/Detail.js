@@ -19,11 +19,11 @@ const Wrapper = styled.div`
   position: relative;
   z-index: 1;
   @media screen and (max-width: 1024) {
-    padding: ${mainStyle.Padding_1024};
+    padding: 100px ${mainStyle.Padding_1024};
   }
 
   @media screen and (max-width: 440) {
-    padding: ${mainStyle.Padding_440};
+    padding: 0;
   }
 `;
 
@@ -60,17 +60,19 @@ const Container = styled.div`
 `;
 const Bg = styled.div`
   /* width: 42%; */
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   height: 650px;
   border-radius: 15px;
-  @media screen and (max-width: 1024) {
+  @media screen and (max-width: 1024px) {
     width: 400px;
-    height: 500px;
+    height: 550px;
   }
 
   @media screen and (max-width: 440px) {
-    width: 300px;
-    height: auto;
+    width: 100%;
+
+    height: 450px;
   }
 `;
 
@@ -81,7 +83,7 @@ const InnerWrap = styled.div`
 `;
 
 const TitileWrap = styled.div`
-  width: 40%;
+  width: 38%;
   height: 70px;
   color: #fff;
   background-color: rgba(11, 20, 43, 0.8);
@@ -91,21 +93,33 @@ const TitileWrap = styled.div`
   line-height: 70px;
   position: absolute;
   top: 10px;
-  right: 110px;
+  right: 165px;
   @media screen and (max-width: 1024px) {
     width: 35%;
     h3 {
       font-size: 28px;
     }
   }
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    top: 450px;
+    right: 60px;
+    width: 80%;
+  }
+
   @media screen and (max-width: 440px) {
-    width: 90%;
+    position: absolute;
+    top: 500px;
+    right: 0;
+    width: 100%;
+    background-color: transparent;
+
     h3 {
       font-size: 20px;
     }
   }
   h3 {
-    font-size: 32px;
+    font-size: 20px;
     font-weight: 700;
     margin-bottom: 20px;
   }
@@ -116,22 +130,29 @@ const TitileWrap = styled.div`
 `;
 
 const InfoWrap = styled.div`
-  width: 600px;
-  height: 580px;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 650px;
+  height: 550px;
+  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   padding: 70px 25px 25px 30px;
-  color: lightgrey;
+  color: #fff;
   @media screen and (max-width: 1024px) {
     width: 450px;
     height: auto;
     padding: 20px;
   }
+  @media screen and (max-width: 768px) {
+    /* width: 450px; */
+    height: auto;
+    padding: 15px;
+    margin-top: 20px;
+  }
 
   @media screen and (max-width: 440px) {
-    width: 300px;
+    width: 100%;
     height: auto;
-    padding: 10px;
+    padding: 0;
+    background-color: transparent;
   }
 
   .release_date {
@@ -141,10 +162,12 @@ const InfoWrap = styled.div`
   div {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5px;
+    opacity: 0.7;
+    font-size: 14px;
     p {
-      background-color: rgba(4, 0, 41, 0.7);
-      border: 2px solid rgb(232, 141, 1, 0.8);
+      background-color: rgba(4, 0, 41, 1);
+      border: 2px solid rgb(232, 141, 1, 0.4);
       padding: 5px 10px;
       border-radius: 10px;
       margin-bottom: 20px;
@@ -154,21 +177,22 @@ const InfoWrap = styled.div`
   p.overview {
     margin-top: 10px;
     line-height: 1.6;
-    color: #e0e0e0;
+    color: #fff;
+    opacity: 0.6;
   }
 
   .director {
     font-size: 18px;
-    font-weight: 600;
-    margin-top: 20px;
-    margin-bottom: 8px;
+    /* font-weight: 600; */
+    margin-top: 25px;
+    margin-bottom: 10px;
   }
 
   .cast {
     font-size: 18px;
-    font-weight: 600;
-    margin-top: 15px;
-    margin-bottom: 8px;
+    /* font-weight: 500; */
+    margin-top: 25px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -299,10 +323,12 @@ const Detail = () => {
                   {creditData?.crew
                     .filter((person) => person.job === "Director")
                     .map((director) => (
-                      <p key={director.id}>{director.name}</p>
+                      <p key={director.id} style={{ opacity: "0.6" }}>
+                        {director.name}
+                      </p>
                     ))}
                   <h4 className="cast">Cast</h4>
-                  <div style={{ display: "flex", gap: "8px" }}>
+                  <div style={{ display: "flex", gap: "8px", opacity: "0.6" }}>
                     {creditData?.cast.slice(0, 4).map((actor) => (
                       <p
                         key={actor.id}

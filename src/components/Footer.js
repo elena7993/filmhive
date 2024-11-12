@@ -10,9 +10,10 @@ const Wrap = styled.div`
   background-color: rgba(2, 0, 15, 1);
   display: flex;
   align-items: center;
+  margin-top: 50px;
   p {
     margin-right: 12px;
-    color: rgba(232, 141, 1, 0.9);
+    color: rgba(255, 255, 255, 0.7);
   }
   div {
     display: flex;
@@ -20,12 +21,14 @@ const Wrap = styled.div`
   }
   @media screen and (max-width: 1024px) {
     padding: 0 ${mainStyle.Padding_1024};
+    font-size: 14px;
   }
 
   @media screen and (max-width: 440px) {
     padding: 0 ${mainStyle.Padding_440};
-    display: block;
+    /* display: block; */
     margin-top: 4px;
+    font-size: 12px;
     .name {
       margin-top: 6px;
       margin-bottom: 3px;
@@ -41,7 +44,7 @@ const Footer = () => {
       <div>
         <p>https://github.com/elena7993/filmhive.git</p>
         <a
-          style={{ color: "rgba(232, 141, 1, 0.9)", fontSize: "15px" }}
+          style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "15px" }}
           href="https://github.com/elena7993/filmhive.git"
         >
           <FontAwesomeIcon icon={faArrowUpRightFromSquare}></FontAwesomeIcon>
