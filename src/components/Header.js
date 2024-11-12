@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mainStyle } from "../GlobalStyled";
 import { useEffect, useRef } from "react";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const HeaderWrap = styled.header`
   width: 100%;
@@ -40,6 +42,10 @@ const Menu = styled.ul`
       color: #fff;
     }
   }
+`;
+
+const Bar = styled.div`
+  font-size: 18px;
 `;
 
 const Header = () => {
@@ -81,6 +87,10 @@ const Header = () => {
           <Link to={"/search"}>SEARCH</Link>
         </li>
       </Menu>
+
+      <Bar>
+        <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+      </Bar>
     </HeaderWrap>
   );
 };
